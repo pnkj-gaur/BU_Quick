@@ -1,0 +1,179 @@
+
+            *
+            {
+                box-sizing: border-box;
+            }
+            body
+            {
+                background-color: rgba(245, 239, 239, 0.925);
+                margin: 0;
+                padding: 0;
+            }
+            .navbar
+            {
+                text-align: right;
+                position: sticky;
+                width: 100%;
+                top: 0px;
+                margin: 0px;
+                z-index: 1;
+                background-color: rgba(72, 112, 151, 1);
+                padding-left: 30px;
+                padding-right: 30px;
+
+            }
+            .nav-item
+            {
+                background-color: rgba(72, 112, 151, 0.808);
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: flex-end;
+                padding-left: 6px;
+            }
+            
+           
+            .logo
+            {
+                float: left;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 26px;
+                color: rgba(248, 244, 244, 0.733);
+                text-align: center;
+                margin-top: 4px;
+            }
+            .nav-item a.activebtn
+            {
+                color: rgba(153, 6, 6, 0.788);
+                font-weight: bolder;
+            }
+            .nav-item a
+            {
+                background-color: rgba(72, 112, 151, 0.808);
+                text-decoration: none;
+                text-align: center;
+                color: white;
+                display: block;
+                padding: 14px 16px;
+                
+            }
+            .nav-item a:hover 
+            {
+                background-color: rgba(85, 85, 85, 0.781);
+                color: white;
+            }
+
+            .side-nav-open
+            {
+                transition: transform 0.2s;
+                color: silver;
+                font-size:30px;
+                cursor:pointer;
+                display: none;
+            }
+            .side-nav-open:hover
+            {
+                color: white;
+                transform: scaley(1.2);
+            }
+            
+            .sidenav {
+                height: 0;
+                width: 100%; 
+                position: fixed; 
+                z-index: 1; 
+                left: 0;
+                background-color: rgba(72, 112, 151, 1); 
+                overflow-y: hidden; 
+                top:0;
+                transition: 0.5s; 
+              }
+              
+              .sidenav a {
+                padding: 10px 8px 6px 45px;
+                text-decoration: none;
+                font-size: 10px;
+                color: #a8a5a5;
+                display: block;
+                transition: 0.3s;
+              }
+              
+              .sidenav a:hover {
+                color: #f1f1f1;
+              }
+              
+              .sidenav .closebtn {
+                position: absolute;
+                top: 0;
+                right: 25px;
+                font-size: 26px;
+                padding: 0;
+                margin: 0;
+              }
+            .banner
+            {
+            
+                position: relative;
+                height: 400px;
+                max-width: auto;
+                background-size:cover;
+                padding: 20px;
+                text-align: center;
+                margin-bottom: 40px;
+                background-image:linear-gradient(rgba(0,0,0,0.45)
+                , rgba(0, 0, 0, 0.45)), url('https://wallpapercave.com/wp/wp3396925.jpg');
+                background-position: center;
+                
+            }
+            
+            .banner-cont
+            {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                word-wrap: break-word;
+                
+            }
+            .Intro{
+                font-size: 70px;
+                color: rgba(223, 190, 130, 0.897);
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-weight: 450;
+                text-shadow: 5px 5px 15px black;
+                margin-bottom: 0;
+            }
+           .discrip{
+                font-size: 18px;
+                color: rgba(180, 180, 180, 0.938);
+                font-family: serif;
+                text-shadow: 8px 8px 15px black;
+           }
+           .notice{
+            font-size: 18px;
+            color: rgb(40, 117, 194);
+            font-family: serif;
+            font-weight: bold;
+           }
+
+            @media screen and (max-width: 600px) 
+            {
+                .navbar{
+                    height: 45px;
+                }
+                .nav-item{display: none;}
+                .side-nav-open{display: block;}
+                .gall-cont
+                {
+                    flex:100%;
+                    max-width: 100%;
+                }
+                
+            }
+            @media screen and (min-width: 600px) 
+            {
+                .sidenav{height: 0;display: none;}
+            }
+                
+            
+            
+        

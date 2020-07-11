@@ -1,0 +1,57 @@
+.datablock{
+    width: 100%;
+    padding: 10px;  
+    margin: auto;
+    box-shadow: 3px 3px 11px #333;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.childblock{
+    display: inline-block;
+    margin: 23px;
+    text-align: center;
+    padding: 12px 4px;
+    width: 150px;
+    font-family: sans-serif;
+    transition: all 0.4s;
+}
+
+.total:hover {
+    box-shadow: 3px 3px 11px rgba(22, 20, 20, 0.5);
+
+}
+.active:hover {
+    box-shadow: 3px 3px 11px rgba(206, 206, 29, 0.884);
+
+}
+.recover:hover {
+    box-shadow: 3px 3px 11px #47d147;
+
+}
+.death:hover {
+    box-shadow: 3px 3px 11px #cc3300;
+
+}
+.childblock p{
+    font-size: x-large;
+    font-family: Verdana, Geneva, Tahoma, sans-serif ;
+    color: rgba(22, 20, 20, 0.5);
+}
+.location{
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px rgb(151, 136, 136);
+    background-color: rgba(160, 149, 149, 0.404);
+    padding: 4px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+}
+
+@media screen and (max-width: 600px) 
+{
+    .childblock{
+        display: block;
+        margin: auto;
+    }
+}
