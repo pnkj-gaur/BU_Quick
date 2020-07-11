@@ -75,7 +75,9 @@ ConChange(e){
 StChange(e){
   this.setState({isstate:e.target.value,iscity:"none",currentvalue:"state",city:[]}); 
 }
-
+CityChange(e){
+  this.setState({iscity:e.target.value,currentvalue:"city"});
+}
 
   render() {  
   console.log(this.state.citydata)
