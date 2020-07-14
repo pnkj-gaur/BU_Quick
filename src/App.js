@@ -15,12 +15,13 @@ class App extends React.Component {
     super(props);
     this.state = {categ:"none",feed:[],country:[],state:[],city:[],iscontry:"Global",isstate:"Select State",iscity:"none",
     statedata:[],contrydata:[],citydata:"none",globaldata:[],currentvalue:"none",offset: 0,newsdata: [],perPage: 4,
-    currentPage: 0,category:"none",source:"none"};
+    currentPage: 0,category:"none",source:[]};
     this.ConChange=this.ConChange.bind(this);
     this.StChange=this.StChange.bind(this);
     this.CityChange=this.CityChange.bind(this);
     this.handlePageClick = this.handlePageClick.bind(this);
     this.pagination=this.pagination.bind(this);
+    this.handleHomeClick=this.handleHomeClick.bind(this);
   }
 count=countries;
 states=["Select State","Andaman and Nicobar Islands","Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chandigarh","Chhattisgarh",
@@ -44,11 +45,9 @@ componentDidMount(){
   .then(res=>this.setState({newsdata:res.data.articles}))
   axios.get("http://newsapi.org/v2/top-headlines?country=in&apiKey=267f7837790a46679ef8bc1106fd1b8c")
   .then(res=>this.setState({feed:res.data.articles.slice(0,4)}))
-  this.setState({pageCount:Math.ceil(this.state.newsdata.length / this.state.perPage)})
 
-
-  
-  
+  axios.get("https://newsapi.org/v2/sources?language=en&country=us&apiKey=267f7837790a46679ef8bc1106fd1b8c")
+  .then(res=>this.setState({source:res.data.sources})) 
 }
 
 
@@ -70,8 +69,13 @@ handleSideClick=(e)=>{
   .then(res=>this.setState({feed:res.data.articles.slice(0,4)}))
   axios.get(lnk)
   .then(res=>this.setState({newsdata:res.data.articles}))
+}
 
-
+handleHomeClick=(e)=>{
+  axios.get("http://newsapi.org/v2/top-headlines?country=in&apiKey=267f7837790a46679ef8bc1106fd1b8c")
+  .then(res=>this.setState({feed:res.data.articles.slice(0,4)}))
+  axios.get("http://newsapi.org/v2/top-headlines?country=in&apiKey=267f7837790a46679ef8bc1106fd1b8c")
+  .then(res=>this.setState({newsdata:res.data.articles}))
 }
 
 getSnapshotBeforeUpdate(prevProps, prevState) {
@@ -178,11 +182,14 @@ CityChange(e){
         }
       })
     }
-    let feedshow='sjs';   
+
+/*handle side button action */
+    let feedshow="<div><h2>Data Not Available</h2></div>";   
         if (this.state.feed.length!==0){
-            feedshow=<FeedShow data={this.state.feed} click={this.handleSideClick}/>
+            feedshow=<FeedShow data={this.state.feed} click={this.handleSideClick} clickL={this.state.source} home={this.handleHomeClick}/>
         }
-    
+
+
     return (<div>
     <div className="covidCon">
     <div style={{marginBottom:"50px",marginTop:"30px"}}> 

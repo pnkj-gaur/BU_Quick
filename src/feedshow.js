@@ -8,13 +8,17 @@ function FeedShow(props){
             <h2 style={{textAlign: "center",fontSize: "40px",marginBottom: "30px"}}>News Section</h2>
             <div class="flex-container">
             <div class="flex-item-left">
-                <h1 style={{color:"silver",fontFamily: "sans-serif",textAlign: "center"}}>Source Wise</h1><hr style={{marginBottom:"20px",color:"silver"}}></hr>
-                <button class="btn">India</button>
-                <button class="btn">Entertainment</button>
-                <button class="btn">Science</button>
-                <button class="btn">Sports</button>
-                <button class="btn">News</button>
-                <button class="btn">ETC</button>
+                <h1 style={{color:"silver",fontFamily: "sans-serif",textAlign: "center"}}>Sources</h1><hr style={{marginBottom:"20px",color:"silver"}}></hr>
+                {
+                props.clickL.map(res=>
+                {
+                    return(
+                    < button target="_blank" class="btn"><a className="link" target="_blank" href={res["url"]}>{res["name"]}</a></button>
+                    )
+                }
+                    
+                )
+            }
 
             </div>
             
@@ -22,12 +26,28 @@ function FeedShow(props){
             {
                 props.data.map(res=>
                 {
+                    let sorc="https://www.ctrealtor.co.in/images/no_image.png";
+                    let by="Unknown Source";
+                    let desc="Oops! Description not available";
+                    if(res["urlToImage"]!==null)
+                        {
+                            sorc=res["urlToImage"];  
+                        }
+                    if(res["author"]!==null)
+                        {
+                            by=res["author"];
+                        }
+                    if(res["description"]!==null)
+                        {
+                            desc=res["description"];
+                        }
+                    
                     return(<div class="flex-data">
-                        <img class="media-img" src={res["urlToImage"]} />
+                        <img class="media-img" src={sorc} />
                         <div class="media-data">
                             <a target="_blank" href={res["url"]} style={{textDecoration: "none",color: "black"}}><h2>{res["title"]}</h2></a>
-                            <p>{res["description"]}</p>
-                            <span style={{color: "rgb(184, 187, 200)"}}>by:{res["author"]}</span>
+                            <p>{desc}</p>
+                            <span style={{color: "rgb(184, 187, 200)"}}>by:{by}</span>
                         </div>
                     </div>)
                 }
@@ -38,6 +58,7 @@ function FeedShow(props){
             </div>
             <div class="flex-item-right">
                 <h1 style={{color:"silver",fontFamily: "sans-serif",textAlign: "center"}}>Category Wise</h1><hr style={{marginBottom:"20px"}}></hr>
+                <button class="btn" onClick={props.home} value="home">Home</button>
                 <button class="btn" onClick={props.click} value="technology">Technology</button>
                 <button class="btn" onClick={props.click} value="science">Science</button>
                 <button class="btn" onClick={props.click} value="sports">Sports</button>
