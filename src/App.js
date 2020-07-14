@@ -6,15 +6,21 @@ import StateUI from './stateUI.js'
 import CountryUI from './countryUI.js'
 import {cities} from './state_city.js'
 import {countries} from './countryName.js'
+import FeedShow from './feedshow.js'
+import ReactPaginate from 'react-paginate';
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {country:[],state:[],city:[],iscontry:"Global",isstate:"Select State",iscity:"none",statedata:[],contrydata:[],citydata:"none",globaldata:[],currentvalue:"none"};
+    this.state = {categ:"none",feed:[],country:[],state:[],city:[],iscontry:"Global",isstate:"Select State",iscity:"none",
+    statedata:[],contrydata:[],citydata:"none",globaldata:[],currentvalue:"none",offset: 0,newsdata: [],perPage: 4,
+    currentPage: 0,category:"none",source:"none"};
     this.ConChange=this.ConChange.bind(this);
     this.StChange=this.StChange.bind(this);
     this.CityChange=this.CityChange.bind(this);
+    this.handlePageClick = this.handlePageClick.bind(this);
+    this.pagination=this.pagination.bind(this);
   }
 count=countries;
 states=["Select State","Andaman and Nicobar Islands","Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chandigarh","Chhattisgarh",
@@ -23,15 +29,53 @@ states=["Select State","Andaman and Nicobar Islands","Andhra Pradesh","Arunachal
       "Nagaland","Odisha","Puducherry","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh",
       "Uttarakhand","West Bengal"]
 
-  
+  pagination()
+  {
+      let slice=this.state.newsdata.slice(this.state.offset,this.state.offset + this.state.perPage);
+      this.setState({feed:slice,pageCount:Math.ceil(this.state.newsdata.length / this.state.perPage)})
+      
+  }
 componentDidMount(){
   this.setState({country:this.count});
   axios.get("https://api.covid19api.com/summary").then(response=>{this.setState({globaldata:response})});
-  axios.get("https://api.covid19india.org/state_district_wise.json").
-    then(response=>{this.setState({citydata:response.data})});
+  axios.get("https://api.covid19india.org/state_district_wise.json")
+  .then(response=>{this.setState({citydata:response.data})})
+  axios.get("http://newsapi.org/v2/top-headlines?country=in&apiKey=267f7837790a46679ef8bc1106fd1b8c")
+  .then(res=>this.setState({newsdata:res.data.articles}))
+  axios.get("http://newsapi.org/v2/top-headlines?country=in&apiKey=267f7837790a46679ef8bc1106fd1b8c")
+  .then(res=>this.setState({feed:res.data.articles.slice(0,4)}))
+  this.setState({pageCount:Math.ceil(this.state.newsdata.length / this.state.perPage)})
+
+
+  
+  
+}
+
+
+handlePageClick = (e) => {
+  const selectedPage = e.selected;
+  const offset = selectedPage * this.state.perPage;
+
+  this.setState({
+      currentPage: selectedPage,
+      offset: offset
+  }, () => {
+      this.pagination()
+  });
+};
+
+handleSideClick=(e)=>{
+  var lnk="http://newsapi.org/v2/top-headlines?country=in&category="+e.target.value+"&apiKey=267f7837790a46679ef8bc1106fd1b8c";
+  axios.get(lnk)
+  .then(res=>this.setState({feed:res.data.articles.slice(0,4)}))
+  axios.get(lnk)
+  .then(res=>this.setState({newsdata:res.data.articles}))
+
 
 }
+
 getSnapshotBeforeUpdate(prevProps, prevState) {
+  
   
   if((this.state.iscontry==="India")){
     if((prevState.iscontry!==this.state.iscontry)){
@@ -80,7 +124,6 @@ CityChange(e){
 }
 
   render() {  
-  console.log(this.state.citydata)
     this.covidData="";
     let country="";
     let state="";
@@ -135,8 +178,13 @@ CityChange(e){
         }
       })
     }
+    let feedshow='sjs';   
+        if (this.state.feed.length!==0){
+            feedshow=<FeedShow data={this.state.feed} click={this.handleSideClick}/>
+        }
     
-    return (<div className="covidCon">
+    return (<div>
+    <div className="covidCon">
     <div style={{marginBottom:"50px",marginTop:"30px"}}> 
       <select onChange={this.ConChange} className="selector">
         {country}
@@ -148,7 +196,22 @@ CityChange(e){
     </div>
       {this.covidData}
       
-    
+  </div>
+  {feedshow}
+  <div className="pagindiv">
+  <ReactPaginate
+                    previousLabel={"prev"}
+                    nextLabel={"next"}
+                    breakLabel={"..."}
+                    breakClassName={"break-me"}
+                    pageCount={this.state.pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageClick}
+                    containerClassName={"pagination"}
+                    subContainerClassName={"pages pagination"}
+                    activeClassName={"active"}/>
+  </div>
   </div>
   );
   }
