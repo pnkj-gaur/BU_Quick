@@ -49,9 +49,9 @@ componentDidMount(){
   axios.get("https://api.rootnet.in/covid19-in/stats/latest").
     then(response=>{this.setState({statedata:response.data["data"]["regional"]})})
 
-  axios.get("http://newsapi.org/v2/top-headlines?country=in&apiKey=267f7837790a46679ef8bc1106fd1b8c")
+  axios.get("https://newsapi.org/v2/top-headlines?country=in&apiKey=267f7837790a46679ef8bc1106fd1b8c")
   .then(res=>this.setState({newsdata:res.data.articles}))
-  axios.get("http://newsapi.org/v2/top-headlines?country=in&apiKey=267f7837790a46679ef8bc1106fd1b8c")
+  axios.get("https://newsapi.org/v2/top-headlines?country=in&apiKey=267f7837790a46679ef8bc1106fd1b8c")
   .then(res=>this.setState({feed:res.data.articles.slice(0,4)}))
 
   axios.get("https://newsapi.org/v2/sources?language=en&country=us&apiKey=267f7837790a46679ef8bc1106fd1b8c")
