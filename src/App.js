@@ -39,8 +39,16 @@ states=["Select State","Andaman and Nicobar Islands","Andhra Pradesh","Arunachal
 componentDidMount(){
   this.setState({country:this.count});
   axios.get("https://api.covid19api.com/summary").then(response=>{this.setState({globaldata:response})});
+
+  axios.get("https://api.covid19api.com/summary").
+    then(response=>{this.setState({contrydata:response})})
+
   axios.get("https://api.covid19india.org/state_district_wise.json")
   .then(response=>{this.setState({citydata:response.data})})
+
+  axios.get("https://api.rootnet.in/covid19-in/stats/latest").
+    then(response=>{this.setState({statedata:response.data["data"]["regional"]})})
+
   axios.get("http://newsapi.org/v2/top-headlines?country=in&apiKey=267f7837790a46679ef8bc1106fd1b8c")
   .then(res=>this.setState({newsdata:res.data.articles}))
   axios.get("http://newsapi.org/v2/top-headlines?country=in&apiKey=267f7837790a46679ef8bc1106fd1b8c")
@@ -101,20 +109,8 @@ getSnapshotBeforeUpdate(prevProps, prevState) {
   
 }
 componentDidUpdate(prevProps,prevState){
-  this.cntry=[];
-  if (this.state.currentvalue==="country" && prevState.iscontry!==this.state.iscontry && this.state.contrydata.length===0){
-   axios.get("https://api.covid19api.com/summary").
-    then(response=>{
-      this.setState({contrydata:response})})
-  }
-
-  if (this.state.currentvalue==="state" && prevState.isstate!==this.state.isstate && this.state.statedata.length===0){
-    axios.get("https://api.rootnet.in/covid19-in/stats/latest").
-    then(response=>{this.setState({statedata:response.data["data"]["regional"]})})
-  }
-  if (this.state.currentvalue==="city" && prevState.iscity!==this.state.iscity && this.state.citydata.length===0){
+  
     
-  }       
   }
  
 ConChange(e){
@@ -184,7 +180,7 @@ CityChange(e){
     }
 
 /*handle side button action */
-    let feedshow="<div><h2>Data Not Available</h2></div>";   
+    let feedshow=<div style={{textAlign:"center"}}><h1>Oops! You are Offline.</h1></div>;   
         if (this.state.feed.length!==0){
             feedshow=<FeedShow data={this.state.feed} click={this.handleSideClick} clickL={this.state.source} home={this.handleHomeClick}/>
         }

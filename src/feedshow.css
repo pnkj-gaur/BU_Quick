@@ -96,6 +96,10 @@ button:hover{
     .flex-container{
         align-content: center;
         flex-direction: column;
+        height: auto;
+    }
+    .flex-item-left,.flex-item-right{
+        width: 100%;
     }
     .flex-item-main{
         width: 95%;
