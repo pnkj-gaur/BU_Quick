@@ -77,21 +77,21 @@
             }
             
             .sidenav {
-                height: 0;
+                height: 0px;
                 width: 100%; 
                 position: fixed; 
                 z-index: 1; 
                 left: 0;
-                background-color: rgba(72, 112, 151, 1); 
+                background-color: #333; 
                 overflow-y: hidden; 
                 top:0;
                 transition: 0.5s; 
               }
               
               .sidenav a {
-                padding: 10px 8px 6px 45px;
+                padding: 20px 8px 6px 45px;
                 text-decoration: none;
-                font-size: 10px;
+                font-size: 25px;
                 color: #a8a5a5;
                 display: block;
                 transition: 0.3s;
@@ -105,7 +105,7 @@
                 position: absolute;
                 top: 0;
                 right: 25px;
-                font-size: 26px;
+                font-size: 50px;
                 padding: 0;
                 margin: 0;
               }
@@ -153,19 +153,19 @@
             color: rgb(40, 117, 194);
             font-family: serif;
             font-weight: bold;
+            text-align: center;
            }
 
             @media screen and (max-width: 600px) 
             {
-                .navbar{
-                    height: 45px;
+                .sidenav{
+                    height: 300px;
                 }
                 .nav-item{display: none;}
                 .side-nav-open{display: block;}
-                .gall-cont
+                .logo
                 {
-                    flex:100%;
-                    max-width: 100%;
+                    margin-top: 2px;
                 }
                 
             }
@@ -175,7 +175,7 @@
             }
 
            
-            .nav-item input[type=text] {
+            .nav-item .search-container input[type=text] {
                 padding: 6px;
                 border-radius: 4px 0px 0px 4px;
                 margin-left: 30px;

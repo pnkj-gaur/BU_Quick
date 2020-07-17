@@ -1,6 +1,6 @@
         
     function openNav() {
-        document.getElementById("mySidenav").style.height= "150px";
+        document.getElementById("mySidenav").style.height= "300px";
     }
       
     function closeNav() {

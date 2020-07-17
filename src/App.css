@@ -161,6 +161,11 @@
             }
             @media screen and (max-width: 600px) 
             {
+                .covidCon{
+                    width: 100%;
+                    margin: auto;
+                }
+
                 .childblock{
                     display: block;
                     margin: auto;
@@ -172,17 +177,24 @@
                     width: 90%;
                 }
                 
+                
             }
         
 
 
 
-
+            .pagindiv
+            {
+                overflow-x: auto;
+                align-items: center;
+            }
             .pagination {
+                max-width: 100%;
                 margin: 20px auto 30px 0px;
                 display: flex;
                 list-style: none;
                 outline: none;
+                padding: 5px 10px 5px 10px ;
               }
               
               .pagination > .active > a{
@@ -192,7 +204,7 @@
               }
               .pagination > li > a{
                 border-radius: 4px;
-                margin: 1px;
+                margin: 0px;
                 padding: 5px 10px;
                 outline: none;
                 cursor: pointer;
