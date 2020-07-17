@@ -158,9 +158,7 @@
 
             @media screen and (max-width: 600px) 
             {
-                .sidenav{
-                    height: 300px;
-                }
+                
                 .nav-item{display: none;}
                 .side-nav-open{display: block;}
                 .logo

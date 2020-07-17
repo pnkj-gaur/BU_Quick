@@ -13,8 +13,8 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {categ:"none",feed:[],country:[],state:[],city:[],iscontry:"Global",isstate:"Select State",iscity:"none",
-    statedata:[],contrydata:[],citydata:"none",globaldata:[],currentvalue:"none",offset: 0,newsdata: [],perPage: 4,
+    this.state = {categ:"none",feed:[],country:[],state:[],city:[],iscontry:"India",isstate:"Select State",iscity:"none",
+    statedata:[],contrydata:[],citydata:"none",globaldata:[],currentvalue:"country",offset: 0,newsdata: [],perPage: 4,
     currentPage: 0,category:"none",source:[]};
     this.ConChange=this.ConChange.bind(this);
     this.StChange=this.StChange.bind(this);
@@ -56,6 +56,10 @@ componentDidMount(){
 
   axios.get("https://newsapi.org/v2/sources?language=en&country=us&apiKey=267f7837790a46679ef8bc1106fd1b8c")
   .then(res=>this.setState({source:res.data.sources})) 
+
+  if((this.state.iscontry==="India")){
+      this.setState({state:this.states});
+  }
 }
 
 
@@ -128,7 +132,18 @@ CityChange(e){
     let country="";
     let state="";
     let city="";
-      country=this.state.country.map((c,index)=><option className="optionchoice" key={index} value={c} >{c}</option>)
+      country=this.state.country.map((c,index)=>
+      {
+        let rs="";
+        if(c==="India")
+        {
+          return <option className="optionchoice" selected key={index} value={c} >{c}</option>
+        }
+        else
+        {
+          return <option className="optionchoice"  key={index} value={c} >{c}</option>
+        }
+      })
       if (this.state.iscontry!=="none" && this.state.iscontry==="India"){
         state=<select onChange={this.StChange} className="selector">{this.state.state.map((c,index)=><option className="option" key={index} value={c} >{c}</option>)}</select>;
       }
