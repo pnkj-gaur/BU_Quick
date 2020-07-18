@@ -15,7 +15,7 @@ class App extends React.Component {
     super(props);
     this.state = {categ:"none",feed:[],country:[],state:[],city:[],iscontry:"India",isstate:"Select State",iscity:"none",
     statedata:[],contrydata:[],citydata:"none",globaldata:[],currentvalue:"country",offset: 0,newsdata: [],perPage: 4,
-    currentPage: 0,category:"none",source:[]};
+    currentPage: 0,category:"none",source:[],covidshow:""};
     this.ConChange=this.ConChange.bind(this);
     this.StChange=this.StChange.bind(this);
     this.CityChange=this.CityChange.bind(this);
@@ -116,6 +116,18 @@ componentDidUpdate(prevProps,prevState){
   
     
   }
+
+hideShow=()=>
+{
+  if(this.state.covidshow==="none")
+  {
+    this.setState({covidshow:""})
+  }
+  else
+  {
+    this.setState({covidshow:"none"})
+  }
+}
  
 ConChange(e){
     this.setState({iscontry:e.target.value,isstate:"Select State",iscity:"none",currentvalue:"country",city:[],state:[]});    
@@ -128,7 +140,7 @@ CityChange(e){
 }
 
   render() {  
-    this.covidData="";
+    this.covidData=<div style={{textAlign:"center"}}><h2>No Data Available!</h2></div>;
     let country="";
     let state="";
     let city="";
@@ -199,10 +211,28 @@ CityChange(e){
         if (this.state.feed.length!==0){
             feedshow=<FeedShow data={this.state.feed} click={this.handleSideClick} clickL={this.state.source} home={this.handleHomeClick}/>
         }
+/*covid data hide/show */ 
+var showbtn="";
+var covidstyle=
+  {
+      display:this.state.covidshow,
+  }
+  if(this.state.covidshow==="none")
+  {
+    showbtn=<button onClick={this.hideShow} style={{backgroundColor:"green"}} >Show Covid Tracker</button>
+  }
+  else
+  {
+    showbtn=<button onClick={this.hideShow} style={{backgroundColor:"rgba(241, 10, 10, 0.884)"}} >Hide Covid Tracker</button>
+  }
 
-
+/* end render*/
     return (<div>
-    <div className="covidCon">
+    <div className="covidShow">
+    {showbtn}
+    </div>
+    <div className="covidCon" style={covidstyle}>
+    <div style={{textAlign: "center",fontSize: "40px",fontWeight: "550",marginBottom: "6px"}}>COVID-19 Tracker</div>
     <div style={{marginBottom:"50px",marginTop:"30px"}}> 
       <select onChange={this.ConChange} className="selector">
         {country}
@@ -212,6 +242,7 @@ CityChange(e){
       {city}
       
     </div>
+    
       {this.covidData}
       
   </div>
