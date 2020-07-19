@@ -81,7 +81,9 @@ handleSideClick=(e)=>{
   .then(res=>this.setState({feed:res.data.articles.slice(0,4)}))
   axios.get(lnk)
   .then(res=>this.setState({newsdata:res.data.articles}))
-  this.rightshowbtn()
+  if(this.state.rightshow==="block"){
+  this.setState({rightshow:"none"})
+  }
 }
 
 handleHomeClick=(e)=>{
@@ -89,7 +91,9 @@ handleHomeClick=(e)=>{
   .then(res=>this.setState({feed:res.data.articles.slice(0,4)}))
   axios.get("https://saurav.tech/NewsAPI/top-headlines/category/general/in.json")
   .then(res=>this.setState({newsdata:res.data.articles}))
-  this.rightshowbtn()
+  if(this.state.rightshow==="block"){
+    this.setState({rightshow:"none"})
+    }
 }
 
 getSnapshotBeforeUpdate(prevProps, prevState) {
