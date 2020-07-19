@@ -28,7 +28,7 @@ function FeedShow(props){
                 {
                     let sorc="https://image.shutterstock.com/image-vector/house-not-available-icon-flat-260nw-1030785001.jpg";
                     let by="Unknown Source";
-                    let desc="Oops! Description not available";
+                    let desc="Oops! Description is not available";
                     if(res["urlToImage"]!==null)
                         {
                             sorc=res["urlToImage"];  

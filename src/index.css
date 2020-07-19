@@ -31,7 +31,7 @@
                 padding-left: 6px;
             }
 
-            .search-container input[type=text] {
+            form input[type=text] {
                 padding: 6px;
                 border-radius: 4px 0px 0px 4px;
                 margin-left: 30px;
@@ -40,7 +40,7 @@
                 border: none;
               }
               
-              .search-container button {
+              form button {
                 float: right;
                 padding: 6px 10px;
                 margin-top: 7px;
