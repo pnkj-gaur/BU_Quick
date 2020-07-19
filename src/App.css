@@ -85,6 +85,37 @@
                 width: 60%;
                 margin: auto;
             }
+.sidebtndiv
+{
+    display: none;
+    margin: auto;
+    text-align: center;                
+}
+.sidebtnleft
+{
+    padding: 10px 14px;
+    border-radius: 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    margin:0 60px 0 10px;
+    font-size: 15px;
+}
+.sidebtnright
+{
+    padding: 10px 14px;
+    border-radius: 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    margin:0 10px 0 60px;
+    font-size: 15px;
+}
+.sidebtnleft:hover,.sidebtnright:hover
+{
+    background-color: black;
+}
+            
             @media screen and (max-width: 600px) 
             {
                 .covidCon{
@@ -102,11 +133,14 @@
                     margin-right: auto;
                     width: 90%;
                 }
-                
+                .sidebtndiv
+                {
+                    display: block;
+                }
+            
                 
             }
         
-
 
 
             .pagindiv

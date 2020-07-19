@@ -15,7 +15,7 @@ class App extends React.Component {
     super(props);
     this.state = {categ:"none",feed:[],country:[],state:[],city:[],iscontry:"India",isstate:"Select State",iscity:"none",
     statedata:[],contrydata:[],citydata:"none",globaldata:[],currentvalue:"country",offset: 0,newsdata: [],perPage: 4,
-    currentPage: 0,category:"none",source:[],covidshow:""};
+    currentPage: 0,category:"none",source:[],covidshow:"",leftshow:"none",rightshow:"none"};
     this.ConChange=this.ConChange.bind(this);
     this.StChange=this.StChange.bind(this);
     this.CityChange=this.CityChange.bind(this);
@@ -81,6 +81,7 @@ handleSideClick=(e)=>{
   .then(res=>this.setState({feed:res.data.articles.slice(0,4)}))
   axios.get(lnk)
   .then(res=>this.setState({newsdata:res.data.articles}))
+  this.rightshowbtn()
 }
 
 handleHomeClick=(e)=>{
@@ -88,6 +89,7 @@ handleHomeClick=(e)=>{
   .then(res=>this.setState({feed:res.data.articles.slice(0,4)}))
   axios.get("https://saurav.tech/NewsAPI/top-headlines/category/general/in.json")
   .then(res=>this.setState({newsdata:res.data.articles}))
+  this.rightshowbtn()
 }
 
 getSnapshotBeforeUpdate(prevProps, prevState) {
@@ -127,6 +129,28 @@ hideShow=()=>
   {
     this.setState({covidshow:"none"})
   }
+}
+leftshowbtn=()=>
+{
+   if(this.state.leftshow==="none")
+   {
+      this.setState({leftshow:"block"})
+   }
+   else
+   {
+      this.setState({leftshow:"none"})
+   }
+}
+rightshowbtn=()=>
+{
+   if(this.state.rightshow==="none")
+   {
+      this.setState({rightshow:"block"})
+   }
+   else
+   {
+      this.setState({rightshow:"none"})
+   }
 }
  
 ConChange(e){
@@ -206,10 +230,12 @@ CityChange(e){
       })
     }
 
-/*handle side button action */
+/*handle feed site*/
     let feedshow=<div style={{textAlign:"center"}}><h1>Oops! You are Offline.</h1></div>;   
         if (this.state.feed.length!==0){
-            feedshow=<FeedShow data={this.state.feed} click={this.handleSideClick} clickL={this.state.source} home={this.handleHomeClick}/>
+            feedshow=<FeedShow data={this.state.feed} click={this.handleSideClick} clickL={this.state.source} 
+            lsideshow={this.state.leftshow} rsideshow={this.state.rightshow} home={this.handleHomeClick}
+            lsidebtn={this.leftshowbtn} rsidebtn={this.rightshowbtn}/>
         }
 /*covid data hide/show */ 
 var showbtn="";
@@ -246,6 +272,13 @@ var covidstyle=
       {this.covidData}
       
   </div>
+  <h2 style={{textAlign: "center",fontSize: "40px",marginBottom: "5px"}}>News Section</h2><hr style={{width:"250px",color:"#333",
+      marginBottom:"30px"}}></hr>
+  <div className="sidebtndiv">
+      <button className="sidebtnleft" onClick={this.leftshowbtn} >By Sources</button>
+      <button className="sidebtnright" onClick={this.rightshowbtn}>By Category</button>
+  </div> 
+
   {feedshow}
   <div className="pagindiv">
   <ReactPaginate

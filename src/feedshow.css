@@ -87,6 +87,41 @@ button:hover{
 .link:hover{
     color: white;
 }
+.sidecontainer
+{
+    background-color: rgba(37, 35, 35, 0.87);
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+}
+.sideshow
+{
+    width: 90%;
+    height: 88%;
+    z-index: 1;
+    position: fixed;
+    top: 8%;
+    left: 5%;
+    background-color: rgb(36, 33, 33);
+    overflow: auto;
+    margin: auto;
+    border-radius: 4px;
+    box-shadow: 2px 2px 10px black;
+}
+
+.closebtn {
+    position: fixed;
+    top: 0;
+    right: 25px;
+    font-size: 60px;
+    padding: 0;
+    margin: 0;
+    color: white;
+    text-shadow: 2px 2px 8px red;
+  }
+  
 @media screen and (max-device-width: 700px)
 {
     

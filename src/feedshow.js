@@ -2,11 +2,45 @@ import React from 'react';
 import './feedshow.css'
 
 
+
 function FeedShow(props){
+   
+    
     return(
-        <div style={{marginTop:"80px"}}>
-            <h2 style={{textAlign: "center",fontSize: "40px",marginBottom: "30px"}}>News Section</h2>
+        <div style={{marginTop:"10px"}}>
+
+{/* Side Menu */}
+            <div className="sidecontainer" style={{display:props.lsideshow}}>
+            <a class="closebtn" onClick={props.lsidebtn}>&times;</a>
+            <div className="sideshow">
+                {
+                    props.clickL.map(res=>
+                    {
+                        return(<button target="_blank" class="btn"><a className="link" target="_blank" href={res["url"]}>{res["name"]}</a></button>)
+                    }
+
+                    )
+                }
+            </div>
+            </div>
+
+            <div className="sidecontainer" style={{display:props.rsideshow}}>
+            <a class="closebtn" onClick={props.rsidebtn}>&times;</a>
+            <div className="sideshow">
+                <button class="btn" onClick={props.home} value="home">Home</button>
+                <button class="btn" onClick={props.click} value="technology">Technology</button>
+                <button class="btn" onClick={props.click} value="science">Science</button>
+                <button class="btn" onClick={props.click} value="sports">Sports</button>
+                <button class="btn" onClick={props.click} value="entertainment">Entertainment</button>
+                <button class="btn" onClick={props.click} value="health">Health</button>
+                <button class="btn" onClick={props.click} value="business">Business</button>
+
+            </div>
+            </div>
+
+
             <div class="flex-container">
+
             <div class="flex-item-left">
                 <h1 style={{color:"silver",fontFamily: "sans-serif",textAlign: "center"}}>Sources</h1><hr style={{marginBottom:"20px",color:"silver"}}></hr>
                 {
