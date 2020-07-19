@@ -3,7 +3,8 @@
     box-shadow: 2px 2px 10px #333;
     background-color: rgba(0, 0, 0, 0.904);;
     display: flex;
-    height: 880px;
+    height: 750px;
+    overflow:auto;
 }
 .flex-item-left ,.flex-item-right
 {

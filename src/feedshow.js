@@ -26,13 +26,14 @@ function FeedShow(props){
             {
                 props.data.map(res=>
                 {
-                    let sorc="https://www.ctrealtor.co.in/images/no_image.png";
+                    let sorc="https://image.shutterstock.com/image-vector/house-not-available-icon-flat-260nw-1030785001.jpg";
                     let by="Unknown Source";
                     let desc="Oops! Description not available";
                     if(res["urlToImage"]!==null)
                         {
                             sorc=res["urlToImage"];  
                         }
+                    
                     if(res["author"]!==null)
                         {
                             by=res["author"];

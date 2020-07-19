@@ -49,12 +49,12 @@ componentDidMount(){
   axios.get("https://api.rootnet.in/covid19-in/stats/latest").
     then(response=>{this.setState({statedata:response.data["data"]["regional"]})})
 
-  axios.get("https://newsapi.org/v2/top-headlines?country=in&apiKey=267f7837790a46679ef8bc1106fd1b8c")
+  axios.get("https://saurav.tech/NewsAPI/top-headlines/category/general/in.json")
   .then(res=>this.setState({newsdata:res.data.articles}))
-  axios.get("https://newsapi.org/v2/top-headlines?country=in&apiKey=267f7837790a46679ef8bc1106fd1b8c")
+  axios.get("https://saurav.tech/NewsAPI/top-headlines/category/general/in.json")
   .then(res=>this.setState({feed:res.data.articles.slice(0,4)}))
 
-  axios.get("https://newsapi.org/v2/sources?language=en&country=us&apiKey=267f7837790a46679ef8bc1106fd1b8c")
+  axios.get("https://saurav.tech/NewsAPI/sources.json")
   .then(res=>this.setState({source:res.data.sources})) 
 
   if((this.state.iscontry==="India")){
@@ -76,7 +76,7 @@ handlePageClick = (e) => {
 };
 
 handleSideClick=(e)=>{
-  var lnk="http://newsapi.org/v2/top-headlines?country=in&category="+e.target.value+"&apiKey=267f7837790a46679ef8bc1106fd1b8c";
+  var lnk="https://saurav.tech/NewsAPI/top-headlines/category/"+e.target.value+"/in.json";
   axios.get(lnk)
   .then(res=>this.setState({feed:res.data.articles.slice(0,4)}))
   axios.get(lnk)
@@ -84,9 +84,9 @@ handleSideClick=(e)=>{
 }
 
 handleHomeClick=(e)=>{
-  axios.get("http://newsapi.org/v2/top-headlines?country=in&apiKey=267f7837790a46679ef8bc1106fd1b8c")
+  axios.get("https://saurav.tech/NewsAPI/top-headlines/category/general/in.json")
   .then(res=>this.setState({feed:res.data.articles.slice(0,4)}))
-  axios.get("http://newsapi.org/v2/top-headlines?country=in&apiKey=267f7837790a46679ef8bc1106fd1b8c")
+  axios.get("https://saurav.tech/NewsAPI/top-headlines/category/general/in.json")
   .then(res=>this.setState({newsdata:res.data.articles}))
 }
 

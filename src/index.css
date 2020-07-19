@@ -30,6 +30,28 @@
                 justify-content: flex-end;
                 padding-left: 6px;
             }
+
+            .search-container input[type=text] {
+                padding: 6px;
+                border-radius: 4px 0px 0px 4px;
+                margin-left: 30px;
+                margin-top: 7px;
+                font-size: 17px;
+                border: none;
+              }
+              
+              .search-container button {
+                float: right;
+                padding: 6px 10px;
+                margin-top: 7px;
+                margin-right: 16px;
+                background: #ddd;
+                font-size: 17px;
+                border: none;
+                cursor: pointer;
+                border-radius: 0px 4px 4px 0px;
+              }
+              
             
            
             .logo
@@ -173,27 +195,7 @@
             }
 
            
-            .navbar .nav-item .search-container input[type=text] {
-                padding: 6px;
-                border-radius: 4px 0px 0px 4px;
-                margin-left: 30px;
-                margin-top: 7px;
-                font-size: 17px;
-                border: none;
-              }
-              
-              .navbar .nav-item .search-container button {
-                float: right;
-                padding: 6px 10px;
-                margin-top: 7px;
-                margin-right: 16px;
-                background: #ddd;
-                font-size: 17px;
-                border: none;
-                cursor: pointer;
-                border-radius: 0px 4px 4px 0px;
-              }
-              
+            
 
                 
             
